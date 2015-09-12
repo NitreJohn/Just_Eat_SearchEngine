@@ -1,0 +1,147 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>{{ postContent }} - Just Eat from Wikipedia</title>
+<link href="static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<link href="static/css/style1.css" rel="stylesheet" type="text/css" media="all" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Graphic Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+<script src="\\static/js/jquery.min.js"></script>
+
+</head>
+<body>
+<!-- header -->
+<div class="banner">
+	<div class="container">
+		<div class="header">
+			<div class="logo">
+				<a href="/"><img src="static/images/logo.png" class="img-responsive" alt="" /></a>
+			</div>
+			<div class="header-right">
+				<ul>
+					<li><a href="#"><i class="fb"> </i></a></li>
+					<li><a href="#"><i class="twt"> </i></a></li>
+				<li>
+				<div class="search2">
+					<form name="eat" action="/food/search/" method="post">
+						<input type="text" name = "eat" value="{{ postContent }}" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '{{ postContent }}';}">
+						<input type="submit" value="">
+					</form>
+				</div></li>
+					<div class="clearfix"></div>
+				</ul>
+					
+			</div>
+				<div class="clearfix"> </div>
+			</div>
+				<div class="head-nav">
+					<span class="menu"> </span>
+				</div>			 
+	</div> 
+</div>
+<!-- header -->
+
+<!-- content -->
+<div class="content">
+	<div class="container">
+	 <div class="load_more">	
+			        <!-- These are our grid blocks -->
+                    {% for food in address.object_list %}
+                    <div class="col-md-3 praesent">
+                        <div class="l_g_r">
+                            <div class="dapibus">
+          						            <div class="l_g">
+                										<h2 class="text-capitalize">{{ food.id }}</h2>
+                										<a href="static/images/{{ food.jpg }}.jpg"><img src="static/images/{{ food.jpg }}.jpg" class="img-responsive" alt=""></a>
+                										<a href="/wiki/{{ food.url }}.html" class="link">Read More</a>							
+          						            </div>
+                            </div>
+                        </div>
+                    </div>
+                    {%  endfor %}
+                    <div class="col-md-12">
+                    {% if address.has_previous %}
+                        <a href="?table=1&&page={{ address.previous_page_number }}&&search={{ postContent }}" class="prev"><div id="loadMore">{{ previous_link_decorator|safe }}<</div></a>
+                    {% else %}
+                        <div id="loadMore" class="paginate_button previous disabled"><span class="disabled prev">{{ previous_link_decorator|safe }}<</span></div>
+                    {% endif %}
+                     
+                    {% for page in address.paginator.page_range %}
+                    {% if page %}
+                    {% ifequal page address.number %}
+                    <div id="loadMore" class="active"><span class="current page">{{ page }}</span></div>
+                    {% else %}
+                    <a href="?table=1&&page{{ page_suffix }}={{ page }}{{ getvars }}&&search={{ postContent }}" class="page"><div id="loadMore">{{ page }}</div></a>
+                    {% endifequal %}
+                    {% endif %}
+                    {% endfor %}
+                       
+                    {% if address.has_next %}
+                             <a href="?table=1&&page={{ address.next_page_number }}&&search={{ postContent }}" class="next"><div id="showLess">>{{ next_link_decorator|safe }}</div></a>
+                    {% else %}
+                            <div id="showLess" class="paginate_button next disabled"><span class="disabled next">>{{ next_link_decorator|safe }}</span></div>
+                    {% endif %}
+                    </div>
+	 </div>
+	</div>
+</div>
+<!-- content -->	
+<!-- footer -->
+	<div class="footer">
+		<div class="container">
+			<div class="col-md-3 copy">
+				<div class="top1">
+					<i class="ham"></i>
+				</div>
+				<div class="top2">
+					<h6>Copyrights © 2015 Graphic</h6>
+					<p>All rights reserved</p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="col-md-3 copy">
+				<div class="top1">
+					<i class="men"></i>
+				</div>
+				<div class="top2">
+					<h6>Template by: </h6>
+					<p><a href="http://w3layouts.com/">W3layouts</a></p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="col-md-3 copy">
+				<div class="top1">
+					<i class="app"></i>
+				</div>
+				<div class="top2">
+					<h6>Images From: </h6>
+					<p><a href="#"> en.wikipedia.org</a></p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="col-md-3 copy">
+				<div class="top1">
+					<i class="lik"></i>
+				</div>
+				<div class="top2">
+					<h6>Website </h6>
+					<p><a href="#"> 美食搜索引擎</a></p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- footer -->
+</body>
+</html>
